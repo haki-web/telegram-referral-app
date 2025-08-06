@@ -8,24 +8,36 @@ export default function Home() {
   const [referralCode, setReferralCode] = useState('');
 
   useEffect(() => {
-    const tg = window.Telegram?.WebApp;
-    if (tg) {
-      tg.ready();
-      const initData = tg.initDataUnsafe.user;
-      if (initData) {
-        setUser(initData);
+  const tg = window.Telegram?.WebApp;
+  if (tg) {
+    tg.ready();
+    const initData = tg.initDataUnsafe.user;
 
-        fetch(`/api/user?telegram_id=${initData.id}`)
-          .then(res => res.json())
-          .then(data => {
-            if (!data.error) {
-              setPoints(data.points);
-              setReferralCode(data.referral_code);
-            }
-          });
-      }
+    if (initData) {
+      console.log("Telegram User:", initData); // Debug
+
+      setUser(initData);
+
+      fetch(`/api/user?telegram_id=${initData.id}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log("API Response:", data); // Debug
+
+          if (!data.error) {
+            setPoints(data.points);
+            setReferralCode(data.referral_code); // This line must exist
+          } else {
+            console.error('API Error:', data.error);
+          }
+        })
+        .catch(err => console.error('Fetch failed:', err));
+    } else {
+      console.error("No Telegram user data found.");
     }
-  }, []);
+  } else {
+    console.error("Telegram WebApp not detected.");
+  }
+}, []);
 
   return (
     <div className="min-h-screen bg-gray-100 pb-16">
