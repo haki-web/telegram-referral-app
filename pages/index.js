@@ -61,10 +61,10 @@ export default function Home() {
     <p className="mt-2">Share this link to invite friends:</p>
 
     <p className="mt-2 bg-white p-2 rounded border break-all">
-      {referralCode
-        ? `https://t.me/refer_93bot?start=${referralCode}`
-        : 'Loading referral code...'}
-    </p>
+  {referralCode
+    ? `https://t.me/refer_93bot?start=${referralCode}`
+    : 'Generating referral link...'}
+</p>
 
     <button
       disabled={!referralCode}
