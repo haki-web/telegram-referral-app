@@ -47,7 +47,7 @@ export default function Home() {
         <div className="p-4 text-center">
           <h2 className="text-xl font-bold">Referral</h2>
           <p className="mt-2">Share this link to invite friends:</p>
-          <p className="mt-2 bg-white p-2 rounded border">{`https://t.me/YOUR_BOT?start=${referralCode}`}</p>
+          <p className="mt-2 bg-white p-2 rounded border">{`https://t.me/refer_93bot?start=${referralCode}`}</p>
         </div>
       )}
 
