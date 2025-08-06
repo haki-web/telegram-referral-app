@@ -44,12 +44,29 @@ export default function Home() {
       )}
 
       {activeTab === 'referral' && (
-        <div className="p-4 text-center">
-          <h2 className="text-xl font-bold">Referral</h2>
-          <p className="mt-2">Share this link to invite friends:</p>
-          <p className="mt-2 bg-white p-2 rounded border">{`https://t.me/refer_93bot?start=${referralCode}`}</p>
-        </div>
-      )}
+  <div className="p-4 text-center">
+    <h2 className="text-xl font-bold">Referral</h2>
+    <p className="mt-2">Share this link to invite friends:</p>
+
+    {referralCode ? (
+      <p className="mt-2 bg-white p-2 rounded border break-all">
+        {`https://t.me/refer_93bot?start=${referralCode}`}
+      </p>
+    ) : (
+      <p className="mt-2 text-gray-500">Loading referral code...</p>
+    )}
+
+    <button
+      onClick={() => {
+        navigator.clipboard.writeText(`https://t.me/refer_93bot?start=${referralCode}`);
+        alert('Referral link copied!');
+      }}
+      className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+    >
+      Copy Link
+    </button>
+  </div>
+)}
 
       {activeTab === 'earn' && (
         <div className="p-4 text-center">
