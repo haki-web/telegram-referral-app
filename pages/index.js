@@ -60,20 +60,19 @@ export default function Home() {
     <h2 className="text-xl font-bold">Referral</h2>
     <p className="mt-2">Share this link to invite friends:</p>
 
-    {referralCode ? (
-      <p className="mt-2 bg-white p-2 rounded border break-all">
-        {`https://t.me/refer_93bot?start=${referralCode}`}
-      </p>
-    ) : (
-      <p className="mt-2 text-gray-500">Loading referral code...</p>
-    )}
+    <p className="mt-2 bg-white p-2 rounded border break-all">
+      {referralCode
+        ? `https://t.me/refer_93bot?start=${referralCode}`
+        : 'Loading referral code...'}
+    </p>
 
     <button
+      disabled={!referralCode}
       onClick={() => {
         navigator.clipboard.writeText(`https://t.me/refer_93bot?start=${referralCode}`);
         alert('Referral link copied!');
       }}
-      className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+      className="mt-4 bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-400"
     >
       Copy Link
     </button>
